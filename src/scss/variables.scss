@@ -1,0 +1,12 @@
+$default-font-size: 16px;
+$default-line-height: 1.3em;
+$default-display-color: white;
+$default-button-color: #242936;
+$default-button-color-accent: #e07b0f;
+$default-button-color-hover-accent: rgb(238, 143, 40);
+$default-button-color-hover: #2f3647;
+$default-button-text-color: white;
+
+$basic-mesurement: $default-font-size * 4;
+$default-calc-width: $basic-mesurement * 4;
+$default-button-height: $basic-mesurement / 1.2;

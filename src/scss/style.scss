@@ -1,0 +1,76 @@
+@import "variables";
+@import "reset";
+
+body {
+  background: black;
+}
+
+.calc {
+  display: flex;
+  flex-flow: row wrap;
+  width: $default-calc-width;
+  &-display {
+    min-height: 2em;
+    flex-basis: $default-calc-width;
+    width: $default-calc-width;
+    background-color: $default-display-color;
+    display: flex;
+    flex-grow: 1;
+    justify-content: right;
+    align-items: center;
+    padding: 0 0.5em;
+    font-size: $default-font-size * 2;
+  }
+  &-functions,
+  &-keypad {
+    max-width: calc($default-calc-width * 0.75);
+    width: calc($default-calc-width * 0.75);
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    .calc-button {
+      width: 33.333%;
+    }
+  }
+  &-functions {
+    width: $default-calc-width;
+    min-width: $default-calc-width;
+    .calc-button {
+      width: 25%;
+    }
+  }
+  &-actions {
+    max-width: calc($default-calc-width * 0.25);
+    width: calc($default-calc-width * 0.25);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  &-button {
+    background-color: $default-button-color;
+    color: $default-button-text-color;
+    text-align: center;
+    width: 100%;
+    min-height: $default-button-height;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $default-font-size * 2;
+    &:hover {
+      background-color: $default-button-color-hover;
+    }
+    &-color-accent {
+      background-color: $default-button-color-accent;
+      &:hover {
+        background-color: $default-button-color-hover-accent !important;
+      }
+    }
+    &.large {
+      height: $default-button-height * 2;
+    }
+    &-zero.large {
+      width: 66% !important;
+      height: $default-button-height;
+    }
+  }
+}
