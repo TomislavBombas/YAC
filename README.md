@@ -4,5 +4,6 @@ I was learning typescript so I made this as an exercise. Had bigger plans but no
 
 ### To Do's
 
-- restrict display size to a certain number of decimals to avoid .000000000001 JS issue
+- Add support for vertical large buttons
+- add support for exponent number display
 - Add scientific calculator structure and operations
