@@ -17,7 +17,18 @@ const getScheme = async (scheme: string) => {
 // ===========================================================
 // Update display section of the calculator
 // ===========================================================
+// This functions is to limit the number of decimals to fit the screen
+// and remove trailing zeros. In case of really large numbers, to convert
+// to exponential notation
+const roundNumberToFitDisplay = () => {
+  // restrict number of decimals to fit the screen
+  calcState.current = Number(calcState.current).toFixed(11 - Math.round(Number(calcState.current)));
+  // remove trailing zeros at the end
+  calcState.current = Number(calcState.current).toString();
+};
+
 const updateDisplay: Function = () => {
+  if (calcState.current.length > 14) roundNumberToFitDisplay();
   const displayElement: HTMLSpanElement = document.querySelector(".calc-display") as HTMLSpanElement;
   calcState.current !== "" ? (displayElement.textContent = calcState.current) : (displayElement.textContent = "0");
 };
@@ -35,6 +46,7 @@ let calcState: calcState = {
 // what happens if you press a number
 const actions: { [key: string]: Function } = {
   handleNumberInput: (number: number) => {
+    if (calcState.current.indexOf(".") > -1 && String(number) === ".") return true;
     calcState.current += number;
     updateDisplay();
   },
