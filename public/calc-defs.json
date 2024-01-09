@@ -1,68 +1,52 @@
 {
   "simple": {
-    "v-structure": "4x5",
-    "h-structure": "5x4",
-    "sections": {
-      "functions": {
-        "clear": {
-          "value": "C",
-          "action": "clear",
-          "size": "small",
-          "color": "basic"
-        },
-        "memory": {
-          "value": "M",
-          "action": "memory",
-          "size": "small",
-          "color": "basic"
-        },
-        "percent": {
-          "value": "%",
-          "action": "percentage",
-          "size": "small",
-          "color": "basic"
-        },
-        "multiply": {
-          "value": "*",
-          "action": "multiply",
-          "size": "small",
-          "color": "basic"
-        }
+    "structure": [
+      ["C", "M", "%", "*"],
+      ["9", "8", "7", "/"],
+      ["6", "5", "4", "-"],
+      ["3", "2", "1", "+"],
+      [".", "0", "=="]
+    ],
+    "actions": {
+      "divide": {
+        "value": "/",
+        "action": "divide",
+        "color": "basic"
       },
-      "numbers": {
-        "range": "0-9",
-        "floatpoint": {
-          "value": ".",
-          "action": "floatpoint",
-          "size": "small",
-          "color": "basic"
-        }
+      "addition": {
+        "value": "+",
+        "action": "addition",
+        "color": "basic"
       },
-      "actions": {
-        "divide": {
-          "value": "/",
-          "action": "divide",
-          "size": "small",
-          "color": "basic"
-        },
-        "addition": {
-          "value": "+",
-          "action": "addition",
-          "size": "small",
-          "color": "basic"
-        },
-        "substraction": {
-          "value": "-",
-          "action": "substraction",
-          "size": "small",
-          "color": "basic"
-        },
-        "equals": {
-          "value": "=",
-          "action": "equals",
-          "size": "small",
-          "color": "accent"
-        }
+      "substraction": {
+        "value": "-",
+        "action": "substraction",
+        "color": "basic"
+      },
+      "equals": {
+        "value": "=",
+        "action": "equals",
+        "color": "accent"
+      },
+      "clear": {
+        "value": "C",
+        "action": "clear",
+        "color": "basic"
+      },
+      "memory": {
+        "value": "M",
+        "action": "memory",
+        "color": "basic"
+      },
+      "percent": {
+        "value": "%",
+        "action": "percentage",
+        "color": "basic"
+      },
+      "multiply": {
+        "value": "*",
+        "action": "multiply",
+        "color": "basic"
       }
     }
   }

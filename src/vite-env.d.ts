@@ -17,6 +17,9 @@ declare interface calcState {
 declare interface buttonDef {
   value: string;
   action: string;
-  size: string;
   color: string;
+}
+
+declare interface calcButtonsDefList {
+  [key: string]: buttonDef;
 }

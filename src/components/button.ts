@@ -24,7 +24,7 @@ export const generateButton = (action: Function, operator: number | string, data
     action(data.value);
   });
   if (data.color === "accent") buttonElement.classList.add("calc-button-color-accent");
-  if (data.size) buttonElement.classList.add(data.size);
+  //if (data.size) buttonElement.classList.add(data.size);
   // Create a button element.
   const button: calcButton = {
     id: id,

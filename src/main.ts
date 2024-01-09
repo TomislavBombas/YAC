@@ -39,6 +39,7 @@ const actions: { [key: string]: Function } = {
     // do action based on symbol used
     switch (symbol) {
       case ".":
+      case String([0 - 9]):
         calcState.current += symbol;
         updateDisplay();
         break;
@@ -107,72 +108,38 @@ const actions: { [key: string]: Function } = {
 // ===========================================================
 // Generate keypad section of calculator
 // ===========================================================
-// insert number buttons into keypad
-const createRangeButtons = (range: string, keypad: HTMLDivElement) => {
-  if (range === "0-9") {
-    for (let index = 0; index < 10; index++) {
-      const val = 9 - index; // invert numbers so 9 goes to the top
-      const digitButton: buttonDef = {
-        value: String(val),
-        action: "number",
-        size: "small",
-        color: "basic",
-      };
-      const element: calcButton = generateButton(actions["handleNumberInput"], val, digitButton);
-      let button: HTMLButtonElement = element.element;
-      if (val === 0) element.element.classList.add("calc-button-zero"); // mark a zero button if it needs to be diferent
-
-      keypad.appendChild(button);
-    }
-  }
-};
-
-// generate keypad section wrapper and button
-const generateKeypad = (numbers: { [key: string]: string | number | buttonDef }) => {
-  let keypad: HTMLDivElement = document.createElement("div");
-  keypad.setAttribute("class", "calc-keypad");
-
-  Object.keys(numbers).forEach((key) => {
-    switch (key) {
-      case "range":
-        createRangeButtons(numbers[key] as string, keypad);
-        break;
-      default:
-        const defs: buttonDef = numbers[key] as buttonDef;
-        let button: calcButton = generateButton(actions["handleSymbolInput"], defs.value, numbers[key] as buttonDef);
-        keypad.appendChild(button.element);
-        break;
-    }
-  });
-
-  return keypad;
-};
 
 // generate actions wrapper and button
-const generateActions: Function = (actionButtons: { [key: string]: buttonDef }) => {
+const generateButtons: Function = (scheme: { [key: string]: Array<[]> | calcButtonsDefList }) => {
   let actionsWrapper: HTMLDivElement = document.createElement("div");
   actionsWrapper.setAttribute("class", "calc-actions");
-
-  Object.keys(actionButtons).forEach((key) => {
-    const defs: buttonDef = actionButtons[key] as buttonDef;
-    let button: calcButton = generateButton(actions["handleSymbolInput"], key, actionButtons[key]);
-    actionsWrapper.appendChild(button.element);
+  let structure = scheme.structure as Array<[]>;
+  let actionsList: calcButtonsDefList = scheme.actions as calcButtonsDefList;
+  console.log("structure", structure);
+  console.log("actionsList", actionsList);
+  structure.forEach((line: Array<string[]>) => {
+    console.log(line);
+    let prevSimbol: string;
+    line.forEach((simbol: any) => {
+      simbol = String(simbol);
+      if (!Number.isNaN(simbol)) {
+        let button: calcButton = generateButton(actions["handleSymbolInput"], simbol, { value: simbol, action: "number", color: "basic" });
+        actionsWrapper.appendChild(button.element);
+      } else {
+        Object.keys(actionsList).forEach((key: string) => {
+          const action = actionsList[key];
+          const val: string = action["value"];
+          if (val === simbol) {
+            let button: calcButton = generateButton(actions["handleSymbolInput"], simbol, action);
+            actionsWrapper.appendChild(button.element);
+          }
+        });
+      }
+    });
   });
   return actionsWrapper;
 };
 
-// generate functions wrapper and button
-const generateFunctions: Function = (functions: { [key: string]: buttonDef }) => {
-  let functionsWrapper: HTMLDivElement = document.createElement("div");
-  functionsWrapper.setAttribute("class", "calc-functions");
-
-  Object.keys(functions).forEach((key) => {
-    const defs: buttonDef = functions[key] as buttonDef;
-    let button: calcButton = generateButton(actions["handleSymbolInput"], key, functions[key]);
-    functionsWrapper.appendChild(button.element);
-  });
-  return functionsWrapper;
-};
 // ==========================================================
 
 // ==========================================================
@@ -181,30 +148,16 @@ const generateFunctions: Function = (functions: { [key: string]: buttonDef }) =>
 const generateCalculator = async (calc_type: string): Promise<void> => {
   const schema = await getScheme(calc_type);
 
-  let sections = schema.sections;
-
   const calcWrapper: HTMLDivElement = document.createElement("div");
   calcWrapper.setAttribute("class", "calc");
 
-  let display: HTMLSpanElement = document.createElement("div");
+  let display: HTMLDivElement = document.createElement("div");
   display.setAttribute("class", "calc-display");
   calcWrapper.appendChild(display);
 
-  let functions: HTMLDivElement = generateFunctions(sections.functions);
-  functions.setAttribute("class", "calc-functions");
-  calcWrapper.appendChild(functions);
-
-  let keypad: HTMLDivElement = generateKeypad(sections.numbers);
-  // this is to wrap the keypad in a rectangle
-  console.log(keypad.childElementCount);
-  if (keypad.childElementCount / 3 !== Math.round(keypad.childElementCount / 3)) {
-    let zero = keypad.querySelector(".calc-button-zero");
-    if (zero) zero.classList.add("large");
-  }
-  calcWrapper.appendChild(keypad);
-
-  let actionsWrapper: HTMLDivElement = generateActions(sections.actions);
-  calcWrapper.appendChild(actionsWrapper);
+  let buttonsWrapper: HTMLDivElement = generateButtons(schema);
+  buttonsWrapper.setAttribute("class", "calc-buttons");
+  calcWrapper.appendChild(buttonsWrapper);
 
   App?.appendChild(calcWrapper);
 

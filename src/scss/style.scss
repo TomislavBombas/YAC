@@ -21,36 +21,17 @@ body {
     padding: 0 0.5em;
     font-size: $default-font-size * 2;
   }
-  &-functions,
-  &-keypad {
-    max-width: calc($default-calc-width * 0.75);
-    width: calc($default-calc-width * 0.75);
+  &-buttons {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    .calc-button {
-      width: 33.333%;
-    }
-  }
-  &-functions {
-    width: $default-calc-width;
-    min-width: $default-calc-width;
-    .calc-button {
-      width: 25%;
-    }
-  }
-  &-actions {
-    max-width: calc($default-calc-width * 0.25);
-    width: calc($default-calc-width * 0.25);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-direction: row;
   }
   &-button {
     background-color: $default-button-color;
     color: $default-button-text-color;
     text-align: center;
-    width: 100%;
+    width: 25%;
     min-height: $default-button-height;
     display: flex;
     justify-content: center;
@@ -66,9 +47,6 @@ body {
       }
     }
     &.large {
-      height: $default-button-height * 2;
-    }
-    &-zero.large {
       width: 66% !important;
       height: $default-button-height;
     }
