@@ -5,47 +5,126 @@
       ["9", "8", "7", "/"],
       ["6", "5", "4", "-"],
       ["3", "2", "1", "+"],
-      [".", "0", "=="]
+      [".", "0", "±", "="]
     ],
     "actions": {
       "divide": {
         "value": "/",
         "action": "divide",
+        "icon": "",
         "color": "basic"
       },
       "addition": {
         "value": "+",
         "action": "addition",
+        "icon": "",
         "color": "basic"
       },
       "substraction": {
         "value": "-",
         "action": "substraction",
+        "icon": "",
         "color": "basic"
       },
       "equals": {
         "value": "=",
         "action": "equals",
+        "icon": "",
         "color": "accent"
       },
       "clear": {
         "value": "C",
         "action": "clear",
+        "icon": "",
         "color": "basic"
       },
       "memory": {
         "value": "M",
         "action": "memory",
+        "icon": "",
         "color": "basic"
       },
       "percent": {
         "value": "%",
         "action": "percentage",
+        "icon": "",
         "color": "basic"
       },
       "multiply": {
         "value": "*",
         "action": "multiply",
+        "icon": "",
+        "color": "basic"
+      },
+      "invert": {
+        "value": "±",
+        "action": "invert",
+        "icon": "",
+        "color": "basic"
+      }
+    }
+  },
+  "scientific": {
+    "structure": [
+      ["C", "M", "%", "*"],
+      ["9", "8", "7", "/"],
+      ["6", "5", "4", "-"],
+      ["3", "2", "1", "+"],
+      [".", "0", "±", "="]
+    ],
+    "actions": {
+      "divide": {
+        "value": "/",
+        "action": "divide",
+        "icon": "",
+        "color": "basic"
+      },
+      "addition": {
+        "value": "+",
+        "action": "addition",
+        "icon": "",
+        "color": "basic"
+      },
+      "substraction": {
+        "value": "-",
+        "action": "substraction",
+        "icon": "",
+        "color": "basic"
+      },
+      "equals": {
+        "value": "=",
+        "action": "equals",
+        "icon": "",
+        "color": "accent"
+      },
+      "clear": {
+        "value": "C",
+        "action": "clear",
+        "icon": "",
+        "color": "basic"
+      },
+      "memory": {
+        "value": "M",
+        "action": "memory",
+        "icon": "",
+        "color": "basic"
+      },
+      "percent": {
+        "value": "%",
+        "action": "percentage",
+        "icon": "",
+        "color": "basic"
+      },
+      "multiply": {
+        "value": "*",
+        "action": "multiply",
+        "icon": "",
+        "color": "basic"
+      },
+      "invert": {
+        "value": "±",
+        "action": "invert",
+        "icon": "",
         "color": "basic"
       }
     }
