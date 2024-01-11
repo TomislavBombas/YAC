@@ -12,6 +12,7 @@ declare interface calcState {
   prev: number;
   current: string;
   action: string;
+  memory: number;
 }
 
 declare interface buttonDef {
