@@ -6,15 +6,12 @@ body {
 }
 
 .calc {
-  display: flex;
-  flex-flow: row wrap;
-  width: $default-calc-width;
+  display: block;
+  width: auto;
   &-display {
     min-height: 2em;
-    flex-basis: $default-calc-width;
-    width: $default-calc-width;
     background-color: $default-display-color;
-    display: flex;
+    display: block;
     flex-grow: 1;
     justify-content: right;
     align-items: center;
@@ -22,18 +19,17 @@ body {
     font-size: $default-font-size * 2;
   }
   &-buttons {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    flex-direction: row;
+    display: block;
+    width: auto;
   }
   &-button {
     background-color: $default-button-color;
     color: $default-button-text-color;
     text-align: center;
-    width: 25%;
+    width: $default-button-width;
     min-height: $default-button-height;
-    display: flex;
+    display: block;
+    float: left;
     justify-content: center;
     align-items: center;
     font-size: $default-font-size * 2;
@@ -50,5 +46,16 @@ body {
       width: 50% !important;
       height: $default-button-height;
     }
+    &.last {
+      display: block;
+      float: none;
+    }
+  }
+}
+
+// Define calculator width classes based on number of columns
+@for $i from 1 through 12 {
+  .calc-width-#{$i} {
+    width: $default-button-width * $i;
   }
 }
