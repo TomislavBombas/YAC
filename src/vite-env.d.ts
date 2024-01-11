@@ -19,6 +19,7 @@ declare interface buttonDef {
   value: string;
   action: string;
   color: string;
+  icon: string;
 }
 
 declare interface calcButtonsDefList {

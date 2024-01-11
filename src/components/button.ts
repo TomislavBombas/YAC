@@ -1,6 +1,7 @@
 export const generateButton = (action: Function, operator: number | string, data: buttonDef) => {
   // Generate a unique ID for the button.
-  const id: string = "button-" + operator;
+  let id: string;
+  data.action !== "number" ? (id = "button-" + data.action) : (id = "button-" + data.action + "-" + data.value);
 
   // Create a button html element.
   const buttonElement: HTMLButtonElement = document.createElement("button");
@@ -18,8 +19,10 @@ export const generateButton = (action: Function, operator: number | string, data
       break;
   }
 
-  // Set the button's text.
-  buttonElement.innerHTML = String(data.value);
+  // Set the button's text or icon if defined.
+  data.icon === ""
+    ? (buttonElement.innerHTML = String(data.value))
+    : (buttonElement.innerHTML = '<img src="icons/' + data.icon + '.svg" alt="' + data.action + '" class="calc-button-icon" />');
   buttonElement.addEventListener("click", () => {
     action(data.value);
   });

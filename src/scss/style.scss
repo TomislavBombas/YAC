@@ -33,8 +33,17 @@ body {
     justify-content: center;
     align-items: center;
     font-size: $default-font-size * 2;
+    position: relative;
     &:hover {
       background-color: $default-button-color-hover;
+    }
+    &-icon {
+      width: $default-button-width * 0.4;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     &-color-accent {
       background-color: $default-button-color-accent;

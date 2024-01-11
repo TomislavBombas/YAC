@@ -161,12 +161,11 @@ const generateButtons: Function = (scheme: { [key: string]: Array<[]> | calcButt
       // create buttons
       if (Number(simbol) == simbol || simbol === ".") {
         // if simbol is number add the button with simple input
-        let button: calcButton = generateButton(actions["handleNumberInput"], simbol, { value: simbol, action: "number", color: "basic" });
+        let button: calcButton = generateButton(actions["handleNumberInput"], simbol, { value: simbol, action: "number", icon: "", color: "basic" });
         if (lastLine) button.element.classList.add("last");
         buttonsWrapper.appendChild(button.element);
       } else {
         // if simbol is not number add a button with action
-
         Object.keys(actionsList).forEach((key: string) => {
           const buttonDefinition = actionsList[key];
           const val: string = buttonDefinition["value"];

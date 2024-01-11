@@ -59,7 +59,7 @@
       "invert": {
         "value": "±",
         "action": "invert",
-        "icon": "",
+        "icon": "invert",
         "color": "basic"
       }
     }
