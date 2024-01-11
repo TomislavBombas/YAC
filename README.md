@@ -4,6 +4,7 @@ I was learning typescript so I made this as an exercise. Had bigger plans but no
 
 ### To Do's
 
+- Add missing functions
 - Add support for vertical large buttons
-- add support for exponent number display
+- Add support for exponent number display
 - Add scientific calculator structure and operations
