@@ -22,6 +22,7 @@ const getScheme = async (scheme: string) => {
 // to exponential notation
 const roundNumberToFitDisplay = () => {
   // restrict number of decimals to fit the screen
+  if (11 - Math.round(Number(calcState.current)) < 0) return Number(calcState.current);
   calcState.current = Number(calcState.current).toFixed(11 - Math.round(Number(calcState.current)));
   // remove trailing zeros at the end
   calcState.current = Number(calcState.current).toString();
@@ -41,6 +42,7 @@ let calcState: calcState = {
   prev: 0,
   current: "",
   action: "",
+  memory: 0,
 };
 
 // what happens if you press a number
@@ -51,7 +53,7 @@ const actions: { [key: string]: Function } = {
     updateDisplay();
   },
   handleSymbolInput: (symbol: string) => {
-    if (calcState.current === "" && symbol !== "." && symbol !== String([0 - 9])) return;
+    if (calcState.current === "" && symbol !== ".") return;
     // do action based on symbol used
     switch (symbol) {
       case "%":
@@ -83,6 +85,20 @@ const actions: { [key: string]: Function } = {
         calcState.current = "";
         calcState.prev = 0;
         calcState.action = "";
+        updateDisplay();
+        break;
+      case "M":
+        if (calcState.memory !== 0) {
+          calcState.memory = Number(calcState.current);
+        } else {
+          calcState.current = String(calcState.memory);
+          calcState.memory = 0;
+        }
+        calcState.action = "";
+        updateDisplay();
+        break;
+      case "±":
+        calcState.current = String(Number(calcState.current) * -1);
         updateDisplay();
         break;
       default:
@@ -124,26 +140,33 @@ const actions: { [key: string]: Function } = {
 // generate actions wrapper and button
 const generateButtons: Function = (scheme: { [key: string]: Array<[]> | calcButtonsDefList }) => {
   // create DOM element to hold buttons
-  let buttonsWrapper: HTMLDivElement = document.createElement("div");
+  const buttonsWrapper: HTMLDivElement = document.createElement("div");
   buttonsWrapper.setAttribute("class", "calc-actions");
 
   // get the calculator structure to be used in generation of buttons
-  let structure = scheme.structure as Array<[]>;
+  const structure = scheme.structure as Array<[]>;
 
   // get the actions to be used to add functions to buttons
-  let actionsList: calcButtonsDefList = scheme.actions as calcButtonsDefList;
+  const actionsList: calcButtonsDefList = scheme.actions as calcButtonsDefList;
 
   // generate buttons based on structure
   structure.forEach((line: Array<string[]>) => {
     let prevSimbol: string;
     //go through each line defined in JSON file
-    line.forEach((simbol: any) => {
+    line.forEach((simbol: any, index: number) => {
+      // check for last button in row
+      let lastLine = false;
+      if (index === line.length - 1) lastLine = true;
+
+      // create buttons
       if (Number(simbol) == simbol || simbol === ".") {
         // if simbol is number add the button with simple input
         let button: calcButton = generateButton(actions["handleNumberInput"], simbol, { value: simbol, action: "number", color: "basic" });
+        if (lastLine) button.element.classList.add("last");
         buttonsWrapper.appendChild(button.element);
       } else {
         // if simbol is not number add a button with action
+
         Object.keys(actionsList).forEach((key: string) => {
           const buttonDefinition = actionsList[key];
           const val: string = buttonDefinition["value"];
@@ -153,6 +176,7 @@ const generateButtons: Function = (scheme: { [key: string]: Array<[]> | calcButt
               button.element.classList.add("large");
               button.element.innerHTML = simbol.charAt(0);
             }
+            if (lastLine) button.element.classList.add("last");
             buttonsWrapper.appendChild(button.element);
           }
         });
@@ -186,7 +210,7 @@ const generateCalculator = async (calc_type: string): Promise<void> => {
   const schema = await getScheme(calc_type);
 
   const calcWrapper: HTMLDivElement = document.createElement("div");
-  calcWrapper.setAttribute("class", "calc");
+  calcWrapper.classList.add("calc", "calc-width-" + schema.structure[0].length);
 
   let display: HTMLDivElement = document.createElement("div");
   display.setAttribute("class", "calc-display");
