@@ -4,7 +4,16 @@ export const generateButton = (action: Function, operator: number | string, data
   data.action !== "number" ? (id = "button-" + data.action) : (id = "button-" + data.action + "-" + data.value);
 
   // Create a button html element.
-  const buttonElement: HTMLButtonElement = document.createElement("button");
+  let buttonElement: HTMLButtonElement;
+  buttonElement = document.createElement("button");
+  switch (data.type) {
+    case "button":
+      break;
+
+    default:
+      throw new Error("Error: Button type not defined.");
+      break;
+  }
   buttonElement.setAttribute("id", id);
   buttonElement.setAttribute("class", "calc-button");
   switch (operator) {
@@ -33,6 +42,7 @@ export const generateButton = (action: Function, operator: number | string, data
     id: id,
     element: buttonElement,
     action: action,
+    type: data.type,
     operator: operator,
     value: data.value,
   };
