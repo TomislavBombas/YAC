@@ -11,54 +11,63 @@
       "divide": {
         "value": "/",
         "action": "divide",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "addition": {
         "value": "+",
         "action": "addition",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "substraction": {
         "value": "-",
         "action": "substraction",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "equals": {
         "value": "=",
         "action": "equals",
+        "type": "button",
         "icon": "",
         "color": "accent"
       },
       "clear": {
         "value": "C",
         "action": "clear",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "memory": {
         "value": "M",
         "action": "memory",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "percent": {
         "value": "%",
         "action": "percentage",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "multiply": {
         "value": "*",
         "action": "multiply",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "invert": {
         "value": "±",
         "action": "invert",
+        "type": "button",
         "icon": "invert",
         "color": "basic"
       }
@@ -66,64 +75,73 @@
   },
   "scientific": {
     "structure": [
-      ["C", "M", "%", "*"],
-      ["9", "8", "7", "/"],
-      ["6", "5", "4", "-"],
-      ["3", "2", "1", "+"],
-      [".", "0", "±", "="]
+      ["C", "M", "M+", "*", "C", "M", "%", "*"],
+      ["9", "8", "7", "/", "9", "8", "7", "/"],
+      ["6", "5", "4", "-", "6", "5", "4", "-"],
+      ["3", "2", "1", "+", "3", "2", "1", "+"],
+      [".", "0", "±", "2", ".", "0", "=="]
     ],
     "actions": {
       "divide": {
         "value": "/",
         "action": "divide",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "addition": {
         "value": "+",
         "action": "addition",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "substraction": {
         "value": "-",
         "action": "substraction",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "equals": {
         "value": "=",
         "action": "equals",
+        "type": "button",
         "icon": "",
         "color": "accent"
       },
       "clear": {
         "value": "C",
         "action": "clear",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "memory": {
         "value": "M",
         "action": "memory",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "percent": {
         "value": "%",
         "action": "percentage",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "multiply": {
         "value": "*",
         "action": "multiply",
+        "type": "button",
         "icon": "",
         "color": "basic"
       },
       "invert": {
         "value": "±",
         "action": "invert",
+        "type": "button",
         "icon": "",
         "color": "basic"
       }
