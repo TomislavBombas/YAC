@@ -4,6 +4,7 @@ declare interface calcButton {
   id: string;
   element: hTMLButtonElement;
   action: Function;
+  type: string;
   operator: number | string;
   value: number | string;
 }
@@ -18,6 +19,7 @@ declare interface calcState {
 declare interface buttonDef {
   value: string;
   action: string;
+  type: string;
   color: string;
   icon: string;
 }
