@@ -11,7 +11,7 @@ body {
   &-display {
     min-height: 2em;
     background-color: $default-display-color;
-    display: block;
+    display: flex;
     flex-grow: 1;
     justify-content: right;
     align-items: center;
@@ -52,7 +52,7 @@ body {
       }
     }
     &.large {
-      width: 50% !important;
+      width: $default-button-width * 2;
       height: $default-button-height;
     }
     &.last {
