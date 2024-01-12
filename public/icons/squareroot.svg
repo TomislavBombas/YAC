@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   width="800px"
+   height="800px"
+   viewBox="0 0 24 24"
+   id="square-root-of-x"
+   data-name="Flat Line"
+   class="icon flat-line"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="g1"
+     transform="matrix(1.1886958,0,0,1.1886958,-2.26435,-2.2642518)">
+    <line
+       id="primary"
+       x1="14"
+       y1="12"
+       x2="18"
+       y2="16"
+       style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
+    <line
+       id="primary-2"
+       data-name="primary"
+       x1="18"
+       y1="12"
+       x2="14"
+       y2="16"
+       style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
+    <path
+       id="primary-3"
+       data-name="primary"
+       d="m 3,12 h 1.43 a 1,1 0 0 1 0.86,0.49 L 8,17 10.79,7.71 A 1,1 0 0 1 11.79,7 H 21"
+       style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
+  </g>
+</svg>
