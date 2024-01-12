@@ -161,7 +161,13 @@ const generateButtons: Function = (scheme: { [key: string]: Array<[]> | calcButt
       // create buttons
       if (Number(simbol) == simbol || simbol === ".") {
         // if simbol is number add the button with simple input
-        let button: calcButton = generateButton(actions["handleNumberInput"], simbol, { value: simbol, action: "number", icon: "", color: "basic" });
+        let button: calcButton = generateButton(actions["handleNumberInput"], simbol, {
+          value: simbol,
+          action: "number",
+          type: "button",
+          icon: "",
+          color: "basic",
+        });
         if (lastLine) button.element.classList.add("last");
         buttonsWrapper.appendChild(button.element);
       } else {
@@ -227,4 +233,4 @@ const generateCalculator = async (calc_type: string): Promise<void> => {
 
 const App = document.getElementById("app");
 
-generateCalculator("simple");
+generateCalculator("scientific");
