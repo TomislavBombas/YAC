@@ -1,6 +1,6 @@
 import "./scss/style.scss";
-import "./components/button";
 import { generateButton } from "./components/button";
+import { calcActions, updateDisplay } from "./components/calculations";
 
 // ===========================================================
 // load caclulator schemes from external json file
@@ -9,128 +9,17 @@ const getScheme = async (scheme: string) => {
   const calcSchemes = await fetch("/calc-defs.json");
   const calcSchemesJson = await calcSchemes.json();
   const calcScheme = calcSchemesJson[scheme];
+  calcScheme.actions = calcSchemesJson.actions;
 
   return calcScheme;
 };
 // ===========================================================
 
 // ===========================================================
-// Update display section of the calculator
-// ===========================================================
-// This functions is to limit the number of decimals to fit the screen
-// and remove trailing zeros. In case of really large numbers, to convert
-// to exponential notation
-const roundNumberToFitDisplay = () => {
-  // restrict number of decimals to fit the screen
-  if (11 - Math.round(Number(calcState.current)) < 0) return Number(calcState.current);
-  calcState.current = Number(calcState.current).toFixed(11 - Math.round(Number(calcState.current)));
-  // remove trailing zeros at the end
-  calcState.current = Number(calcState.current).toString();
-};
-
-const updateDisplay: Function = () => {
-  if (calcState.current.length > 14) roundNumberToFitDisplay();
-  const displayElement: HTMLSpanElement = document.querySelector(".calc-display") as HTMLSpanElement;
-  calcState.current !== "" ? (displayElement.textContent = calcState.current) : (displayElement.textContent = "0");
-};
-// ===========================================================
-
-// ===========================================================
 // Actions section
 // ===========================================================
-let calcState: calcState = {
-  prev: 0,
-  current: "",
-  action: "",
-  memory: 0,
-};
-
-// what happens if you press a number
-const actions: { [key: string]: Function } = {
-  handleNumberInput: (number: number) => {
-    if (calcState.current.indexOf(".") > -1 && String(number) === ".") return true;
-    calcState.current += number;
-    updateDisplay();
-  },
-  handleSymbolInput: (symbol: string) => {
-    if (calcState.current === "" && symbol !== ".") return;
-    // do action based on symbol used
-    switch (symbol) {
-      case "%":
-      case "+":
-      case "-":
-      case "*":
-      case "/":
-        if (calcState.action === "") {
-          calcState.action = symbol;
-          calcState.prev = Number(calcState.current);
-          calcState.current = "";
-          // updateDisplay();
-        } else {
-          calcState.current = String(actions.doCalc());
-          calcState.prev = 0;
-          calcState.action = symbol;
-          updateDisplay();
-        }
-        break;
-      case "=":
-        if (calcState.action !== "") {
-          calcState.current = String(actions.doCalc());
-          calcState.prev = 0;
-          calcState.action = "";
-          updateDisplay();
-        }
-        break;
-      case "C":
-        calcState.current = "";
-        calcState.prev = 0;
-        calcState.action = "";
-        updateDisplay();
-        break;
-      case "M":
-        if (calcState.memory !== 0) {
-          calcState.memory = Number(calcState.current);
-        } else {
-          calcState.current = String(calcState.memory);
-          calcState.memory = 0;
-        }
-        calcState.action = "";
-        updateDisplay();
-        break;
-      case "±":
-        calcState.current = String(Number(calcState.current) * -1);
-        updateDisplay();
-        break;
-      default:
-        console.log("default");
-        break;
-    }
-  },
-  // Calculation functions based on symbol used
-  doCalc: () => {
-    let currentCalculation = {
-      first: calcState.prev,
-      second: Number(calcState.current),
-    };
-    switch (calcState.action) {
-      case "+":
-        return currentCalculation.first + currentCalculation.second;
-        break;
-      case "-":
-        return currentCalculation.first - currentCalculation.second;
-        break;
-      case "*":
-        return currentCalculation.first * currentCalculation.second;
-        break;
-      case "/":
-        return currentCalculation.first / currentCalculation.second;
-        break;
-      case "%":
-        return (currentCalculation.second / currentCalculation.first) * 100;
-        break;
-    }
-  },
-};
+// all actions are pulled from ./components/calculations.ts
+const actions = calcActions;
 // ===========================================================
 
 // ===========================================================
@@ -158,11 +47,15 @@ const generateButtons: Function = (scheme: { [key: string]: Array<[]> | calcButt
       let lastLine = false;
       if (index === line.length - 1) lastLine = true;
 
+      // -----------------------------------------
       // create buttons
+      // check if it is simple input 0-9 and . or it is a symbol representing a function
+      // -----------------------------------------
       if (Number(simbol) == simbol || simbol === ".") {
         // if simbol is number add the button with simple input
         let button: calcButton = generateButton(actions["handleNumberInput"], simbol, {
-          value: simbol,
+          name: simbol,
+          value: "",
           action: "number",
           type: "button",
           icon: "",
@@ -170,40 +63,45 @@ const generateButtons: Function = (scheme: { [key: string]: Array<[]> | calcButt
         });
         if (lastLine) button.element.classList.add("last");
         buttonsWrapper.appendChild(button.element);
+        // -----------------------------------------
       } else {
-        // if simbol is not number add a button with action
+        // -----------------------------------------
+        // if simbol is not number or a dot add a button with action
+        // go through all actions and check if the action is the same as the simbol
         Object.keys(actionsList).forEach((key: string) => {
+          // get the button definition from actions list
           const buttonDefinition = actionsList[key];
-          const val: string = buttonDefinition["value"];
-          if (val === simbol.charAt(0)) {
-            let button: calcButton = generateButton(actions["handleSymbolInput"], simbol, buttonDefinition);
-            if (doubleSymbol(simbol)) {
-              button.element.classList.add("large");
-              button.element.innerHTML = simbol.charAt(0);
+          const val: string = buttonDefinition.name;
+          // if the action is the same as the simbol generate the button
+          if (val === simbol) {
+            let button: calcButton;
+            switch (buttonDefinition.type) {
+              case "button":
+                button = generateButton(actions["handleSymbolInput"], simbol, buttonDefinition);
+                if (lastLine) button.element.classList.add("last");
+                buttonsWrapper.appendChild(button.element);
+                break;
+              case "toggle":
+                button = generateButton(actions["handleToggle"], simbol, buttonDefinition);
+                if (lastLine) button.element.classList.add("last");
+                buttonsWrapper.appendChild(button.element);
+                break;
+              case "dropdown":
+                button = generateButton(actions["handleDropdown"], simbol, buttonDefinition);
+                if (lastLine) button.element.classList.add("last");
+                buttonsWrapper.appendChild(button.element);
+                break;
+
+              default:
+                break;
             }
-            if (lastLine) button.element.classList.add("last");
-            buttonsWrapper.appendChild(button.element);
           }
         });
+        // -----------------------------------------
       }
     });
   });
   return buttonsWrapper;
-};
-
-// chek if button has a double symbol, that means it is a large horisontal button
-const doubleSymbol = (simbol: string) => {
-  const simbolArray = [...simbol];
-
-  if (simbolArray.length === 1) return false;
-
-  let prevSimbol: string = "";
-  let isDouble: boolean | void = false;
-  simbolArray.forEach((element: string) => {
-    if (element === prevSimbol) isDouble = true;
-    prevSimbol = element;
-  });
-  return isDouble;
 };
 
 // ==========================================================
@@ -212,19 +110,24 @@ const doubleSymbol = (simbol: string) => {
 // Main function to generate calculator.
 // ==========================================================
 const generateCalculator = async (calc_type: string): Promise<void> => {
+  // load calculator definition from external json file
   const schema = await getScheme(calc_type);
 
+  // create DOM element to hold calculator
   const calcWrapper: HTMLDivElement = document.createElement("div");
   calcWrapper.classList.add("calc", "calc-width-" + schema.structure[0].length);
 
+  // create DOM element to display calculations, basically calculator screen display
   let display: HTMLDivElement = document.createElement("div");
   display.setAttribute("class", "calc-display");
   calcWrapper.appendChild(display);
 
+  // create DOM element to hold buttons
   let buttonsWrapper: HTMLDivElement = generateButtons(schema);
   buttonsWrapper.setAttribute("class", "calc-buttons");
   calcWrapper.appendChild(buttonsWrapper);
 
+  // add calculator to DOM
   App?.appendChild(calcWrapper);
 
   updateDisplay();
@@ -233,4 +136,5 @@ const generateCalculator = async (calc_type: string): Promise<void> => {
 
 const App = document.getElementById("app");
 
-generateCalculator("scientific");
+generateCalculator("simple");
+//generateCalculator("scientific");
