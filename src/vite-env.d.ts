@@ -17,7 +17,8 @@ declare interface calcState {
 }
 
 declare interface buttonDef {
-  value: string;
+  name: string;
+  value: [] | string;
   action: string;
   type: string;
   color: string;
