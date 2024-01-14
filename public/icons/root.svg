@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   width="800px"
+   height="800px"
+   viewBox="0 0 24 24"
+   id="square-root-of-x"
+   data-name="Flat Line"
+   class="icon flat-line"
+   version="1.1"
+   sodipodi:docname="root.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.05125"
+     inkscape:cx="392.39001"
+     inkscape:cy="445.1843"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <defs
+     id="defs1" />
+  <g
+     id="g1"
+     transform="matrix(1.1886958,0,0,1.1886958,-2.26435,-2.2642518)">
+    <line
+       id="primary"
+       x1="14"
+       y1="12"
+       x2="18"
+       y2="16"
+       style="fill:none;stroke:#ffffff;stroke-width:1.99999024;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none" />
+    <line
+       id="primary-2"
+       data-name="primary"
+       x1="18"
+       y1="12"
+       x2="14"
+       y2="16"
+       style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
+    <line
+       id="primary-5"
+       x1="4.6148438"
+       y1="4.8305755"
+       x2="6.3816285"
+       y2="7.3668547"
+       style="fill:none;stroke:#ffffff;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <line
+       id="primary-5-9"
+       x1="6.3822069"
+       y1="7.3477011"
+       x2="6.3822055"
+       y2="9.4453478"
+       style="fill:none;stroke:#ffffff;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <line
+       id="primary-2-3"
+       data-name="primary"
+       x1="8.1566277"
+       y1="4.8214507"
+       x2="6.3845139"
+       y2="7.3653793"
+       style="fill:none;stroke:#ffffff;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="primary-3"
+       data-name="primary"
+       d="m 3,12 h 1.43 a 1,1 0 0 1 0.86,0.49 L 8,17 10.79,7.71 A 1,1 0 0 1 11.79,7 H 21"
+       style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
+  </g>
+</svg>
