@@ -1,4 +1,5 @@
 {
+  "JSON instructions": "",
   "simple": {
     "structure": [
       ["C", "M", "%", "*"],
@@ -6,145 +7,160 @@
       ["6", "5", "4", "-"],
       ["3", "2", "1", "+"],
       [".", "0", "±", "="]
-    ],
-    "actions": {
-      "divide": {
-        "value": "/",
-        "action": "divide",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "addition": {
-        "value": "+",
-        "action": "addition",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "substraction": {
-        "value": "-",
-        "action": "substraction",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "equals": {
-        "value": "=",
-        "action": "equals",
-        "type": "button",
-        "icon": "",
-        "color": "accent"
-      },
-      "clear": {
-        "value": "C",
-        "action": "clear",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "memory": {
-        "value": "M",
-        "action": "memory",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "percent": {
-        "value": "%",
-        "action": "percentage",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "multiply": {
-        "value": "*",
-        "action": "multiply",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "invert": {
-        "value": "±",
-        "action": "invert",
-        "type": "button",
-        "icon": "invert",
-        "color": "basic"
-      }
-    }
+    ]
   },
   "scientific": {
     "structure": [
-      ["C", "M", "M+", "*", "C", "M", "%", "*"],
-      ["9", "8", "7", "/", "9", "8", "7", "/"],
-      ["6", "5", "4", "-", "6", "5", "4", "-"],
-      ["3", "2", "1", "+", "3", "2", "1", "+"],
-      [".", "0", "±", "2", ".", "0", "=="]
-    ],
-    "actions": {
-      "divide": {
-        "value": "/",
-        "action": "divide",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "addition": {
-        "value": "+",
-        "action": "addition",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "substraction": {
-        "value": "-",
-        "action": "substraction",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "equals": {
-        "value": "=",
-        "action": "equals",
-        "type": "button",
-        "icon": "",
-        "color": "accent"
-      },
-      "clear": {
-        "value": "C",
-        "action": "clear",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "memory": {
-        "value": "M",
-        "action": "memory",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "percent": {
-        "value": "%",
-        "action": "percentage",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "multiply": {
-        "value": "*",
-        "action": "multiply",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      },
-      "invert": {
-        "value": "±",
-        "action": "invert",
-        "type": "button",
-        "icon": "",
-        "color": "basic"
-      }
+      ["C", "9", "8", "7", "+", "root", "fun"],
+      ["M", "6", "5", "4", "-", "exp", "rad/deg"],
+      ["MC", "3", "2", "1", "*", "sin", "cos"],
+      ["±", ".", "0", "%", "/", "=="]
+    ]
+  },
+  "actions": {
+    "divide": {
+      "name": "/",
+      "value": "",
+      "action": "divide",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "addition": {
+      "name": "+",
+      "value": "",
+      "action": "addition",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "substraction": {
+      "name": "-",
+      "value": "",
+      "action": "substraction",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "equals-large": {
+      "name": "==",
+      "value": "",
+      "action": "equals",
+      "type": "button",
+      "icon": "",
+      "color": "accent"
+    },
+    "equals": {
+      "name": "=",
+      "value": "",
+      "action": "equals",
+      "type": "button",
+      "icon": "",
+      "color": "accent"
+    },
+    "clear": {
+      "name": "C",
+      "value": "",
+      "action": "clear",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "memory": {
+      "name": "M",
+      "value": "",
+      "action": "memory",
+      "type": "button",
+      "icon": "",
+      "color": "red"
+    },
+    "functons": {
+      "name": "fun",
+      "value": ["abs", "round", "ceil", "floor", "log", "sin", "cos", "tan"],
+      "action": "functions",
+      "type": "dropdown",
+      "icon": "function",
+      "color": "basic"
+    },
+    "memory-clear": {
+      "name": "MC",
+      "value": "",
+      "action": "memory-clear",
+      "type": "button",
+      "icon": "",
+      "color": "red"
+    },
+    "percent": {
+      "name": "%",
+      "value": "",
+      "action": "percentage",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "multiply": {
+      "name": "*",
+      "value": "",
+      "action": "multiply",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "invert": {
+      "name": "±",
+      "value": "",
+      "action": "invert",
+      "type": "button",
+      "icon": "invert",
+      "color": "basic"
+    },
+    "square-root": {
+      "name": "sqr",
+      "value": "",
+      "action": "sqroot",
+      "type": "button",
+      "icon": "squareroot",
+      "color": "basic"
+    },
+    "root": {
+      "name": "root",
+      "value": "",
+      "action": "root",
+      "type": "button",
+      "icon": "root",
+      "color": "basic"
+    },
+    "exponent": {
+      "name": "exp",
+      "value": "",
+      "action": "exponent",
+      "type": "button",
+      "icon": "exponent",
+      "color": "basic"
+    },
+    "sin": {
+      "name": "sin",
+      "value": "",
+      "action": "sin",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "cos": {
+      "name": "cos",
+      "value": "",
+      "action": "cos",
+      "type": "button",
+      "icon": "",
+      "color": "basic"
+    },
+    "raddeg": {
+      "name": "rad/deg",
+      "value": "",
+      "action": "raddeg",
+      "type": "toggle",
+      "icon": "",
+      "color": "basic"
     }
   }
 }
