@@ -22,23 +22,25 @@ body {
     display: block;
     width: auto;
   }
+  &-dropdown,
+  &-toggle,
   &-button {
     background-color: $default-button-color;
     color: $default-button-text-color;
     text-align: center;
     width: $default-button-width;
     min-height: $default-button-height;
-    display: block;
+    display: flex;
     float: left;
     justify-content: center;
     align-items: center;
-    font-size: $default-font-size * 2;
+    font-size: $default-font-size * 1.3;
     position: relative;
     &:hover {
       background-color: $default-button-color-hover;
     }
     &-icon {
-      width: $default-button-width * 0.4;
+      width: $default-button-width * 0.3;
       display: block;
       position: absolute;
       top: 50%;
@@ -51,13 +53,106 @@ body {
         background-color: $default-button-color-hover-accent !important;
       }
     }
+    &-color-red {
+      background-color: #ae0000;
+      &:hover {
+        background-color: #cb3333 !important;
+      }
+    }
     &.large {
       width: $default-button-width * 2;
       height: $default-button-height;
     }
     &.last {
-      display: block;
       float: none;
+    }
+  }
+  &-dropdown {
+    &-default {
+      pointer-events: none;
+    }
+    &-options {
+      display: none;
+      position: absolute;
+      flex-direction: column;
+      width: auto;
+      top: 100%;
+      background-color: transparent;
+      z-index: 1000;
+      div {
+        padding: $default-font-size / 2;
+        display: flex;
+        font-size: $default-font-size / 1.25;
+        position: relative;
+        cursor: pointer;
+        white-space: nowrap;
+        background-color: $default-button-color;
+        &:hover {
+          background-color: $default-button-color-hover;
+        }
+      }
+      &::after {
+        content: none !important;
+      }
+    }
+    &.toggled {
+      div:nth-child(2) {
+        display: flex !important;
+      }
+      &::after {
+        content: "▴";
+      }
+    }
+    &::after {
+      content: "▾";
+      display: inline;
+      position: absolute;
+      right: 5px;
+    }
+  }
+  &-toggle {
+    font-size: $default-font-size * 0.9;
+    &-option {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      &:nth-child(1) {
+        left: 0.5rem;
+      }
+      &:nth-child(2) {
+        right: 0.5rem;
+      }
+    }
+    &-cover {
+      background-color: transparent;
+      width: $default-button-width;
+      height: $default-button-width / 2;
+      position: absolute;
+      top: calc(50% - $default-button-width / 4);
+      border-radius: 300px;
+      border: 1px solid $default-button-color-accent;
+      z-index: 10;
+      &::before {
+        content: "";
+        display: block;
+        background-color: $default-button-color;
+        height: calc($default-button-width / 2 - 2px);
+        width: calc($default-button-width / 2 - 2px);
+        border: 1px solid $default-button-color-accent;
+        border-radius: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 50%; // this is necessary for transition animation to work
+        z-index: 10;
+        transition: all 0.3s ease;
+      }
+    }
+    &.toggled {
+      div:nth-child(3)::before {
+        right: 0 !important;
+        left: 50% !important; // this is necessary for transition animation to work
+      }
     }
   }
 }
